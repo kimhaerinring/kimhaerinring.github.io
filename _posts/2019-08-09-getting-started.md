@@ -1,151 +1,184 @@
 ---
-title: Getting Started
-description: >-
-  Get started with Chirpy basics in this comprehensive overview.
-  You will learn how to install, configure, and use your first Chirpy-based website, as well as deploy it to a web server.
-author: cotes
-date: 2019-08-09 20:55:00 +0800
-categories: [Blogging, Tutorial]
-tags: [getting started]
+title: 프로젝트 PIC MAP 포트폴리오
+date: 2024-09-03 21:21:00 +0900
+categories: [Blogging, Portfolio]
+tags: [portfolio, project]     # TAG names should always be lowercase
+media_subpath: '/posts/20240903'
 pin: true
-media_subpath: '/posts/20180809'
 ---
 
-## Creating a Site Repository
+## 프로젝트 PIC MAP
 
-When creating your site repository, you have two options depending on your needs:
+주 제 : **여행 경험 공유, 위치 기반 여행지 추천 웹 플랫폼**  
+기 간 : 2024-08-01 ~ 2024-08-30  
+팀 원 : **박찬솔**, 이시우, 김해린, 신정호  
+담당 역할 : 프로젝트 총괄 및 개발  
+수행 업무 :  
+  - 인력 및 일정 관리  
+  - 카카오 로그인  
+  - 카카오 지도를 활용한 게시글 위치 정보 저장 및 게시글 추천,  
+  - 소셜 기능 (좋아요, 팔로잉, 팔로우 등)  
+  - 게시글, 팔로잉 리스트 무한 스크롤 구현   
+  - 최종 문서 작성   
+  
+GitHub URL : [**https://github.com/PARK-CHAN-SOL/PicMap**](https://github.com/PARK-CHAN-SOL/PicMap)  
+최종 Branch : master  
 
-### Option 1. Using the Starter (Recommended)
+### **목차**
 
-This approach simplifies upgrades, isolates unnecessary files, and is perfect for users who want to focus on writing with minimal configuration.
+1. [프로젝트 개요][프로젝트 개요 링크]
+ * [프로젝트 주제][프로젝트 주제 링크]
+ * [프로젝트 개발 환경][프로젝트 개발 환경 링크]
+ * [프로젝트 진행 일정][프로젝트 진행 일정 링크]
+2. [프로젝트 상세 설계][프로젝트 상세 설계 링크]
+ * [요구사항 정의][요구사항 정의 링크]
+ * [WBS][WBS 링크]
+ * [데이터베이스 정의][데이터베이스 정의 링크]
+3. [기능 구현][기능 구현 링크]
+4. [트러블 슈팅][트러블 슈팅 링크]
+5. [느낀점][느낀점 링크]
 
-1. Sign in to GitHub and navigate to the [**starter**][starter].
-2. Click the <kbd>Use this template</kbd> button and then select <kbd>Create a new repository</kbd>.
-3. Name the new repository `<username>.github.io`, replacing `username` with your lowercase GitHub username.
+#### **1. 프로젝트 개요**
 
-### Option 2. Forking the Theme
+##### **프로젝트 주제**
+![프로젝트 주제][프로젝트 주제 이미지]   
+ - 개발 방법론: 애자일 - TDD  
+ - 회의 방식: 데일리 스크럼  
+ - 주제 도출 방식: 브레인스토밍  
 
-This approach is convenient for modifying features or UI design, but presents challenges during upgrades. So don't try this unless you are familiar with Jekyll and plan to heavily modify this theme.
+##### **프로젝트 개발 환경**
+![프로젝트 개발 환경][프로젝트 개발 환경 이미지]   
+   
+##### **프로젝트 진행 일정**
+![프로젝트 진행 일정][프로젝트 진행 일정 이미지]   
+   
+#### **2. 프로젝트 상세 설계**
 
-1. Sign in to GitHub.
-2. [Fork the theme repository](https://github.com/cotes2020/jekyll-theme-chirpy/fork).
-3. Name the new repository `<username>.github.io`, replacing `username` with your lowercase GitHub username.
+##### **요구사항 정의**
+ - 전체 요구사항  
+![요구사항 정의][요구사항 정의 이미지]  
+ - 주 담당 파트 요구사항  
+![요구사항 정의 찬솔][요구사항 정의 찬솔 이미지]  
+[요구사항 정의서 스프레드시트][요구사항 정의서 스프레드시트 링크]  
+  
+##### **WBS**
+ - 전체 WBS  
+![WBS][WBS 이미지]  
+ - 주 담당 파트 WBS  
+![WBS 찬솔][WBS 찬솔 이미지]  
+[WBS 스프레드시트][WBS 스프레드시트 링크]  
+   
+##### **데이터베이스 정의**
+![데이터베이스 정의 (ERDCLOUD)][데이터베이스 정의 이미지 (ERDCLOUD)]  
+![데이터베이스 정의 (TREE)][데이터베이스 정의 이미지 (TREE)]  
+ - 위는 데이터베이스를 ERD로 표현한 그림과, 해당 데이터 베이스의 계층적 구조를 표현한 그림을 보여줌  
+ - 테이블(개체)는 총 12개를 사용하였으며, 시퀀스는 10개를 사용하였음  
+ - 데이터 베이스는 2차 정규화까지 진행되었으나, 반정규화를 거친 일부 테이블 외에는 3차 정규화까지 진행되었음   
+[ERDCLOUD][ERDCLOUD 링크]  
+[Table 정의서 스프레드시트][Table 정의서 스프레드시트 링크]  
+   
+#### **3. 기능 구현**
 
-## Setting up the Environment
+![베스트 게시글 및 게시글 디테일][베스트 게시글 및 게시글 디테일 이미지]  
+ - 메인 페이지에 카카오 지도 API를 활용하여 베스트 게시글의 사진을 지도상에 출력  
+ - 특정 키워드 내의 베스트 게시글을 검색 가능  
+ - 디테일 페이지에서는 게시글의 내용과 해당 게시글 근처 추천 여행지(게시글)를 출력  
+ - 계층형 게시글 구조 구현 (부모글, 자식글)   
+    
+![베스트 관광지 및 게시글 리스트][베스트 관광지 및 게시글 리스트 이미지]  
+ - 메인 페이지에 TOUR API를 활용하여 국내 대표 관광지의 사진 및 관련 게시글의 개수를 출력  
+ - 검색 기능을 활용하여 다른 키워드 관련 게시글 리스트 출력 가능  
+ - 최신순, 추천순 정렬 기능을 활용해 정렬 기준 변경 가능   
+   
+![회원가입, 로그인][회원가입, 로그인 이미지]  
+ - "로그인" 버튼 클릭 시 로그인 모달을 출력, 가입한 계정으로 로그인 가능  
+ - 회원가입 버튼 클릭 시 회원가입 모달을 출력, 정보 입력은 정규식으로 검증됨   
+   
+![아이디 비밀번호 찾기][아이디 비밀번호 찾기 이미지]  
+ - "아이디 또는 비밀번호를 잊어버리셨나요?" 링크 클릭시 아이디 찾기 페이지로 이동  
+ - 가입시 입력한 이름과 휴대폰번호를 통해 아이디 찾기 가능  
+ - "비밀번호 찾기" 링크 클릭시 비밀번호 찾기 페이지로 이동  
+ - 아이디, 이름, 휴대폰번호 정보 입력시 비밀번호의 앞 3자리, 뒷 1자리 출력   
+   
+![카카오 로그인][카카오 로그인 이미지]  
+ - 로그인 모달 내부 "카카오 로그인" 버튼 클릭시 카카오 로그인 페이지로 이동  
+ - 약관 동의를 마치면 카카오 로그인 API를 활용한 간편 로그인 가능   
+   
+![프로필 페이지][프로필 페이지 이미지]  
+ - 로그인 후, 프로필 이미지 또는 마이페이지 버튼 클릭시 프로필 페이지로 이동  
+ - 사용자가 작성한 게시글을 지도상에 출력  
+ - 팔로잉, 팔로워 버튼 클릭시 팔로잉, 팔로워 모달에 리스트 출력  
+ - 모달 내부에서 팔로우 기능 활용 가능  
+ - 본인이 작성한 게시글과 본인이 저장한 게시글 리스트를 확인 가능   
+   
+![게시글 작성][게시글 작성 이미지]  
+ - 프로필 페이지의 "게시글 쓰기" 버튼 또는 전체 게시글 리스트의 "+" 버튼 클릭시 게시글 작성 페이지로 이동  
+ - 게시글의 사진, 제목, 위치, 내용 입력 후 등록시 게시글 작성 가능  
+ - 게시글 내용 입력은 위지위그 에디터인 썸머노트를 활용하였음  
+ - "위치" 버튼 클릭시 출력되는 지도 모달 내에서 찾고자 하는 위치 검색 가능   
+   
+#### **4. 트러블 슈팅**
+ * 게시글의 순서가 매번 다르게 로딩되는 문제가 발생함  
+   - fetch 기능을 활용해 비동기식으로 리스트를 불러오는 도중 발생한 문제임을 파악함  
+   - fetch구문을 async 함수 내부에 위치시키고, await를 사용하여 순서대로 게시글이 로딩되게 처리함  
+  
+ * 썸머노트 위지위그에디터 구현시 게시글 작성시 게시글 내용(텍스트) 작성 란에 이미지를 드래그 드랍하여 입력할 수 있는 문제 발생  
+   - 썸머노트에서 제공하는 이미지 삽입 이벤트를 활용하여 이미지 삽입 이벤트 발생시 해당 이벤트를 중지하도록 처리함  
+  
+ * 모달 내부 지도 출력시 지도 이미지가 불러와지지 않는 문제가 발생함  
+   - 카카오 지도 API에서 제공하는 모달 버튼에 이벤트를 부여하여 문제를 해결하고자 하였으나 모달이 화면에 출력되는데에 시간 지연이 존재하여 해당 방법만으로는 해결에 어려움이 있었음  
+   - 자바스크립트의 MutaionObserver 기능을 활용하여 모달창의 display 속성이 바뀔 때 relayout 함수가 호출되도록 개선하여 문제를 해결함  
+  
+ * 게시글 리스트 정렬 방식 변경시 html 소스 코드 상에는 객체가 존재하나 화면상에 출력되지 않는 문제가 발생함  
+   - 리스트 로딩시 애니메이션 등은 외부 템플릿의 css, js를 사용하였는데, 한번 배치된 리스트를 재배치할수 없게 설계되어있음을 확인함   
+   - 로딩 애니메이션 및 스타일 등을 담당하는 css, js 코드를 분석하여 동일한 기능을 하는 코드를 재작성하여 문제를 해결함   
+  
+#### **5. 느낀점**
 
-Once your repository is created, it's time to set up your development environment. There are two primary methods:
+ * **팀워크와 소통**: 협업의 중요성을 체감하며, 백엔드 개발자로서의 팀워크 능력을 강화함  
 
-### Using Dev Containers (Recommended for Windows)
+ * **기술적 도전**: 무한 스크롤, 지도 API, 에디터 문제 해결을 통해 문제 해결 능력을 향상함  
 
-Dev Containers offer an isolated environment using Docker, which prevents conflicts with your system and ensures all dependencies are managed within the container.
+ * **데이터베이스 설계**: 데이터베이스 정규화 및 설계 경험을 통해 데이터 관리와 설계 능력을 강화함  
 
-**Steps**:
+ * **시간 관리**: 프로젝트 일정 관리 경험을 통해 효율적인 개발 및 계획 수정의 중요성을 배움  
 
-1. Install Docker:
-   - On Windows/macOS, install [Docker Desktop][docker-desktop].
-   - On Linux, install [Docker Engine][docker-engine].
-2. Install [VS Code][vscode] and the [Dev Containers extension][dev-containers].
-3. Clone your repository:
-   - For Docker Desktop: Start VS Code and [clone your repo in a container volume][dc-clone-in-vol].
-   - For Docker Engine: Clone your repo locally, then [open it in a container][dc-open-in-container] via VS Code.
-4. Wait for the Dev Containers setup to complete.
+ * **커뮤니케이션과 관리**: 프로젝트 관리와 커뮤니케이션의 중요성을 깨달으며, 향후 팀 내 작업 조율에 도움이 될 것임  
 
-### Setting up Natively (Recommended for Unix-like OS)
+이 프로젝트를 통해 얻은 경험과 지식은 앞으로의 개발 및 협업에 큰 도움이 될 것입니다. 팀원들과 함께 만든 결과물에 대해 자부심을 느끼며, 다음 단계의 도전이 기대됩니다.  
 
-For Unix-like systems, you can set up the environment natively for optimal performance, though you can also use Dev Containers as an alternative.
+[프로젝트 개요 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94
+[프로젝트 주제 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A3%BC%EC%A0%9C
+[프로젝트 진행 일정 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A7%84%ED%96%89-%EC%9D%BC%EC%A0%95
+[프로젝트 상세 설계 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#2-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%81%EC%84%B8-%EC%84%A4%EA%B3%84
+[요구사항 정의 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EC%A0%95%EC%9D%98
+[WBS 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#wbs
+[ERDCLOUD 링크]: https://www.erdcloud.com/d/6xv5D2FfbDApxrQHz  
+[데이터베이스 정의 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EC%9D%98
+[프로젝트 개발 환경 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD
+[기능 구현 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#3-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84
+[트러블 슈팅 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#4-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85
+[느낀점 링크]: https://park-chan-sol.github.io/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-PIC-MAP-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/#5-%EB%8A%90%EB%82%80%EC%A0%90
 
-**Steps**:
+[요구사항 정의서 스프레드시트 링크]: https://docs.google.com/spreadsheets/d/1uQJl9_ASPbSN-qPA1adEvE_afG3JeTlwwGDaPCMKUxc/edit?gid=1477875131#gid=1477875131
+[WBS 스프레드시트 링크]: https://docs.google.com/spreadsheets/d/1uQJl9_ASPbSN-qPA1adEvE_afG3JeTlwwGDaPCMKUxc/edit?gid=1379820161#gid=1379820161
+[Table 정의서 스프레드시트 링크]: https://docs.google.com/spreadsheets/d/1uQJl9_ASPbSN-qPA1adEvE_afG3JeTlwwGDaPCMKUxc/edit?gid=1874875199#gid=1874875199
 
-1. Follow the [Jekyll installation guide](https://jekyllrb.com/docs/installation/) to install Jekyll and ensure [Git](https://git-scm.com/) is installed.
-2. Clone your repository to your local machine.
-3. If you forked the theme, install [Node.js][nodejs] and run `bash tools/init.sh` in the root directory to initialize the repository.
-4. Run command `bundle` in the root of your repository to install the dependencies.
+[프로젝트 주제 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-프로젝트-주제.png
+[프로젝트 진행 일정 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-프로젝트-진행-일정.png
+[요구사항 정의 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-요구사항-정의.png
+[요구사항 정의 찬솔 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-요구사항-정의 찬솔.png
+[WBS 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-WBS.png
+[WBS 찬솔 이미지]: https://park-chan-sol.github.io/assets/img/PIC-MAP-WBS 찬솔.png
+[데이터베이스 정의 이미지 (ERDCLOUD)]: https://park-chan-sol.github.io/assets/img/PIC-MAP-데이터베이스-정의-ERDCLOUD.png
+[데이터베이스 정의 이미지 (TREE)]: https://park-chan-sol.github.io/assets/img/PIC-MAP-데이터베이스-정의-TREE.png
+[프로젝트 개발 환경 이미지]: https://park-chan-sol.github.io/assets/img/프로젝트개발환경.png
 
-## Usage
+[회원가입, 로그인 이미지]: https://park-chan-sol.github.io/assets/img/Join_Login.gif
+[아이디 비밀번호 찾기 이미지]: https://park-chan-sol.github.io/assets/img/FindAccount.gif
+[카카오 로그인 이미지]: https://park-chan-sol.github.io/assets/img/KakaoLogin.gif
+[프로필 페이지 이미지]: https://park-chan-sol.github.io/assets/img/Profile.gif
 
-### Start the Jekyll Server
-
-To run the site locally, use the following command:
-
-```terminal
-$ bundle exec jekyll s
-```
-
-> If you are using Dev Containers, you must run that command in the **VS Code** Terminal.
-{: .prompt-info }
-
-After a few seconds, the local server will be available at <http://127.0.0.1:4000>.
-
-### Configuration
-
-Update the variables in `_config.yml`{: .filepath} as needed. Some typical options include:
-
-- `url`
-- `avatar`
-- `timezone`
-- `lang`
-
-### Social Contact Options
-
-Social contact options are displayed at the bottom of the sidebar. You can enable or disable specific contacts in the `_data/contact.yml`{: .filepath} file.
-
-### Customizing the Stylesheet
-
-To customize the stylesheet, copy the theme's `assets/css/jekyll-theme-chirpy.scss`{: .filepath} file to the same path in your Jekyll site, and add your custom styles at the end of the file.
-
-Starting with version `6.2.0`, if you want to overwrite the SASS variables defined in `_sass/addon/variables.scss`{: .filepath}, copy the main SASS file `_sass/main.scss`{: .filepath} to the `_sass`{: .filepath} directory in your site's source, then create a new file `_sass/variables-hook.scss`{: .filepath} and assign your new values there.
-
-### Customizing Static Assets
-
-Static assets configuration was introduced in version `5.1.0`. The CDN of the static assets is defined in `_data/origin/cors.yml`{: .filepath }. You can replace some of them based on the network conditions in the region where your website is published.
-
-If you prefer to self-host the static assets, refer to the [_chirpy-static-assets_](https://github.com/cotes2020/chirpy-static-assets#readme) repository.
-
-## Deployment
-
-Before deploying, check the `_config.yml`{: .filepath} file and ensure the `url` is configured correctly. If you prefer a [**project site**](https://help.github.com/en/github/working-with-github-pages/about-github-pages#types-of-github-pages-sites) and don't use a custom domain, or if you want to visit your website with a base URL on a web server other than **GitHub Pages**, remember to set the `baseurl` to your project name, starting with a slash, e.g., `/project-name`.
-
-Now you can choose _ONE_ of the following methods to deploy your Jekyll site.
-
-### Deploy Using Github Actions
-
-Prepare the following:
-
-- If you're on the GitHub Free plan, keep your site repository public.
-- If you have committed `Gemfile.lock`{: .filepath} to the repository, and your local machine is not running Linux, update the platform list of the lock file:
-
-  ```console
-  $ bundle lock --add-platform x86_64-linux
-  ```
-
-Next, configure the _Pages_ service:
-
-1. Go to your repository on GitHub. Select the _Settings_ tab, then click _Pages_ in the left navigation bar. In the **Source** section (under _Build and deployment_), select [**GitHub Actions**][pages-workflow-src] from the dropdown menu.  
-   ![Build source](pages-source-light.png){: .light .border .normal w='375' h='140' }
-   ![Build source](pages-source-dark.png){: .dark .normal w='375' h='140' }
-
-2. Push any commits to GitHub to trigger the _Actions_ workflow. In the _Actions_ tab of your repository, you should see the workflow _Build and Deploy_ running. Once the build is complete and successful, the site will be deployed automatically.
-
-You can now visit the URL provided by GitHub to access your site.
-
-### Manual Build and Deployment
-
-For self-hosted servers, you will need to build the site on your local machine and then upload the site files to the server.
-
-Navigate to the root of the source project, and build your site with the following command:
-
-```console
-$ JEKYLL_ENV=production bundle exec jekyll b
-```
-
-Unless you specified the output path, the generated site files will be placed in the `_site`{: .filepath} folder of the project's root directory. Upload these files to your target server.
-
-[nodejs]: https://nodejs.org/
-[starter]: https://github.com/cotes2020/chirpy-starter
-[pages-workflow-src]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow
-[docker-desktop]: https://www.docker.com/products/docker-desktop/
-[docker-engine]: https://docs.docker.com/engine/install/
-[vscode]: https://code.visualstudio.com/
-[dev-containers]: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
-[dc-clone-in-vol]: https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume
-[dc-open-in-container]: https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-an-existing-folder-in-a-container
+[베스트 게시글 및 게시글 디테일 이미지]: https://park-chan-sol.github.io/assets/img/BestReview_TravelDetail.gif
+[베스트 관광지 및 게시글 리스트 이미지]: https://park-chan-sol.github.io/assets/img/BestSpot_TravelList.gif
+[게시글 작성 이미지]: https://park-chan-sol.github.io/assets/img/TravelWrite.gif
